@@ -1,0 +1,28 @@
+<button class="chatbot-toggle" (click)="toggleChatbot()">
+    <span *ngIf="!chatbotActive">🤖</span>
+    <span *ngIf="chatbotActive">✕</span>
+  </button>
+  
+  <div class="chatbot-box" [class.active]="chatbotActive">
+    <div class="chatbot-header">
+      <span>🤖</span> Chat Assistant
+      <span class="chatbot-status" *ngIf="isLoading">Thinking...</span>
+    </div>
+    
+    <div class="chatbot-messages">
+      <div *ngFor="let msg of messages; let i = index" 
+           class="msg" 
+           [ngClass]="msg.role"
+           [class.thinking]="isLoading && i === messages.length - 1 && msg.role === 'assistant'">
+        {{ msg.content }}
+      </div>
+    </div>
+    
+    <div class="chatbot-input">
+      <input [(ngModel)]="userMessage" 
+             (keydown.enter)="sendMessage()" 
+             placeholder="Type your message..."
+             [disabled]="isLoading" />
+      <button (click)="sendMessage()" [disabled]="isLoading || !userMessage.trim()">↵</button>
+    </div>
+  </div>

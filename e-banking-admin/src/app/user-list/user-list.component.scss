@@ -1,0 +1,169 @@
+/* General page styling */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+    margin: 0;
+    padding: 20px;
+    min-height: 100vh;
+    color: #333;
+  }
+  
+  /* Container styling */
+  .container {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: rgba(255, 255, 255, 0.9);
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Header/title styling */
+  h1 {
+    text-align: center;
+    color: #2c3e50;
+    margin-bottom: 30px;
+    font-weight: 600;
+  }
+  
+  /* User selection dropdown */
+  .user-selection {
+    margin-bottom: 30px;
+    padding: 20px;
+    background-color: #f8f9fa;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+  }
+  
+  .user-selection label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 500;
+    color: #2c3e50;
+  }
+  
+  .user-selection select {
+    width: 100%;
+    padding: 10px 15px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 16px;
+    background-color: white;
+    transition: border-color 0.3s;
+  }
+  
+  .user-selection select:focus {
+    outline: none;
+    border-color: #3498db;
+    box-shadow: 0 0 0 2px rgba(52, 152, 219, 0.2);
+  }
+  
+  /* Form styling */
+  .settings-form {
+    background-color: white;
+    padding: 25px;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+  }
+  
+  .settings-form label {
+    display: block;
+    margin-bottom: 15px;
+    font-weight: 500;
+  }
+  
+  .settings-form input[type="number"],
+  .settings-form input[type="text"] {
+    width: 100%;
+    padding: 10px 15px;
+    margin-top: 5px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 16px;
+    transition: all 0.3s;
+  }
+  
+  .settings-form input[type="number"]:focus,
+  .settings-form input[type="text"]:focus {
+    border-color: #3498db;
+    box-shadow: 0 0 0 2px rgba(52, 152, 219, 0.2);
+    outline: none;
+  }
+  
+  .settings-form input[type="checkbox"] {
+    margin-left: 10px;
+    width: 18px;
+    height: 18px;
+    vertical-align: middle;
+  }
+  
+  /* Button styling */
+  button {
+    background-color: #3498db;
+    color: white;
+    border: none;
+    padding: 12px 25px;
+    font-size: 16px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: all 0.3s;
+    font-weight: 500;
+    margin-top: 10px;
+  }
+  
+  button:hover {
+    background-color: #2980b9;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  button:active {
+    transform: translateY(0);
+  }
+  
+  /* Notification styling (keep your existing notification styles) */
+  .notification {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    padding: 15px 20px;
+    border-radius: 5px;
+    color: white;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+    animation: slideIn 0.5s, fadeOut 0.5s 4.5s;
+  }
+  
+  .success {
+    background-color: #4CAF50;
+  }
+  
+  .error {
+    background-color: #F44336;
+  }
+  
+  @keyframes slideIn {
+    from { transform: translateX(100%); opacity: 0; }
+    to { transform: translateX(0); opacity: 1; }
+  }
+  
+  @keyframes fadeOut {
+    from { opacity: 1; }
+    to { opacity: 0; }
+  }
+  
+  /* Responsive design */
+  @media (max-width: 768px) {
+    .container {
+      padding: 15px;
+    }
+    
+    .settings-form {
+      padding: 15px;
+    }
+    
+    button {
+      width: 100%;
+      padding: 15px;
+    }
+  }

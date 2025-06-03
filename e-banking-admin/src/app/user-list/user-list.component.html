@@ -1,0 +1,45 @@
+<div class="container">
+    <h1>User Settings Management</h1>
+    
+    <div class="user-selection">
+      <label for="userSelect">Select User:</label>
+      <select id="userSelect" [(ngModel)]="selectedUserId" (change)="onUserSelect()">
+        <option *ngFor="let setting of settings" [value]="setting.userId">
+          User ID: {{ setting.userId }}
+        </option>
+      </select>
+    </div>
+    
+    <div *ngIf="selectedSetting" class="settings-form">
+      <form (ngSubmit)="onSubmit()">
+        <label>Commission Rate:
+          <input type="number" [(ngModel)]="formData.commissionRate" name="commissionRate" />
+        </label>
+        
+        <label>Max Transaction Amount:
+          <input type="number" [(ngModel)]="formData.maxTransactionAmount" name="maxTransactionAmount" />
+        </label>
+        
+        <label>Transfer Limit:
+          <input type="number" [(ngModel)]="formData.transferLimit" name="transferLimit" />
+        </label>
+        
+        <label>
+          Crypto Enabled:
+          <input type="checkbox" [(ngModel)]="formData.cryptoEnabled" name="cryptoEnabled" />
+        </label>
+        
+        <label>
+          Referral Enabled:
+          <input type="checkbox" [(ngModel)]="formData.referralEnabled" name="referralEnabled" />
+        </label>
+        
+        <button type="submit">Update Settings</button>
+      </form>
+    </div>
+    
+    <div *ngIf="showNotification" class="notification" [class.success]="isSuccess" [class.error]="!isSuccess">
+      {{ notificationMessage }}
+    </div>
+  </div>
+  <app-chatbot></app-chatbot>
