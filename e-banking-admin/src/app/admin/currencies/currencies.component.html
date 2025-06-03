@@ -1,0 +1,68 @@
+<div class="currencies-container">
+  <h2 class="title">Available Currencies</h2>
+
+  <button (click)="showAddCurrencyForm()">
+    {{ showAddForm ? 'Cancel' : 'Add Currency' }}
+  </button>
+
+  <div *ngIf="message"
+     [ngClass]="message.success ? 'success-message' : 'error-message'">
+  {{ message.text }}
+</div>
+
+
+  <app-add-currency *ngIf="showAddForm" (currencyAdded)="handleCurrencyEvent($event)"></app-add-currency>
+
+  <app-update-currency
+    *ngIf="showUpdateForm"
+    [currency]="selectedCurrency"
+    (currencyUpdated)="handleCurrencyEvent($event)">
+  </app-update-currency>
+
+  <table class="currency-table">
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>Code</th>
+          <th>Name</th>
+          <th>Symbol</th>
+          <th>Buy Rate</th>
+          <th>Sell Rate</th>
+          <th>Country</th>
+          <th>Amount</th>
+          <th>Status</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let currency of currencies; let i = index" [class.disabled]="!currency.enabled">
+          <td>{{ currency.id }}</td>
+          <td>{{ currency.code }}</td>
+          <td>{{ currency.name }}</td>
+          <td>{{ currency.symbol }}</td>
+          <td>{{ currency.buyRate | number:'1.2-6' }}</td>
+          <td>{{ currency.sellRate | number:'1.2-6' }}</td>
+          <td>{{ currency.country || '—' }}</td>
+          <td>{{ currency.amount }}</td>
+          <td>
+            <span [class.active]="currency.enabled" [class.inactive]="!currency.enabled">
+              {{ currency.enabled ? 'Active' : 'Disabled' }}
+            </span>
+          </td>
+          <td class="action-buttons">
+            <button
+              class="btn"
+              [ngClass]="currency.enabled ? 'btn-disable' : 'btn-enable'"
+              (click)="toggleCurrencyStatus(currency)"
+            >
+              {{ currency.enabled ? 'Disable' : 'Activate' }}
+            </button>
+  
+            <button class="btn btn-update" (click)="updateCurrency(currency)">
+              {{ showUpdateForm && selectedCurrency?.id === currency.id ? 'Cancel' : 'Update' }}
+            </button>
+          </td>
+        </tr>
+      </tbody>
+  </table>
+</div>

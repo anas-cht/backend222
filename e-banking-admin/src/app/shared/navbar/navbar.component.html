@@ -1,0 +1,22 @@
+<nav class="navbar">
+    <div class="navbar-container">
+      <a href="/admin/dashboard" class="navbar-brand">eBanking</a>
+      <button class="navbar-toggle" (click)="toggleMenu()">
+        <span class="toggle-icon">☰</span>
+      </button>
+      <div class="navbar-menu" [class.active]="isMenuOpen">
+        <ul class="navbar-links">
+          <li><a routerLink="/accounts" routerLinkActive="active">Account</a></li>
+          <a routerLink="/logout">Logout</a>
+        </ul>
+        <div class="navbar-auth">
+          <!-- <a *ngIf="!isLoggedIn" routerLink="/login" class="auth-link">Login</a>
+          <a *ngIf="!isLoggedIn" routerLink="/register" class="auth-link">Register</a> -->
+          <div *ngIf="isLoggedIn" class="user-profile">
+            <!-- <span class="username">{{ username }}</span> -->
+            <button (click)="logout()">Logout</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </nav>

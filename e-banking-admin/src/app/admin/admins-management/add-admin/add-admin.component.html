@@ -1,0 +1,75 @@
+<div class="admin-form">
+    <h3>Add New Admin</h3>
+    <form (ngSubmit)="submit()" #addForm="ngForm">
+  
+      <!-- Username -->
+      <div class="form-group">
+        <input type="text" name="username" [(ngModel)]="admin.username" placeholder="Username" required #username="ngModel">
+        <div *ngIf="username.invalid && (username.dirty || username.touched)" class="error-message">
+          Username is required
+        </div>
+      </div>
+  
+      <!-- Name -->
+      <div class="form-group">
+        <input type="text" name="name" [(ngModel)]="admin.name" placeholder="Name" #name="ngModel">
+      </div>
+  
+      <!-- Email -->
+      <div class="form-group">
+        <input type="email" name="email" [(ngModel)]="admin.email" placeholder="Email" required #email="ngModel">
+        <div *ngIf="email.invalid && (email.dirty || email.touched)" class="error-message">
+          Valid email is required
+        </div>
+      </div>
+  
+      <!-- Phone -->
+      <div class="form-group">
+        <input type="text" name="phone" [(ngModel)]="admin.phone" placeholder="Phone" #phone="ngModel">
+      </div>
+  
+      <!-- Address -->
+      <div class="form-group">
+        <input type="text" name="address" [(ngModel)]="admin.address" placeholder="Address" #address="ngModel">
+      </div>
+  
+      <!-- Password -->
+      <div class="form-group">
+        <input type="password" name="password" [(ngModel)]="admin.password" placeholder="Password" required minlength="6" #password="ngModel">
+        <div *ngIf="password.invalid && (password.dirty || password.touched)" class="error-message">
+          <div *ngIf="password.errors?.['required']">Password is required</div>
+          <div *ngIf="password.errors?.['minlength']">At least 6 characters</div>
+        </div>
+      </div>
+  
+      <!-- Department -->
+      <div class="form-group">
+        <input type="text" name="department" [(ngModel)]="admin.department" placeholder="Department" #department="ngModel">
+      </div>
+  
+      <!-- Employee ID -->
+      <div class="form-group">
+        <input type="text" name="employeeId" [(ngModel)]="admin.employeeId" placeholder="Employee ID" #employeeId="ngModel">
+      </div>
+  
+      <!-- Bank ID -->
+      <div class="form-group">
+        <input type="number" name="bankId" [(ngModel)]="admin.bankId" placeholder="Bank ID" required #bankId="ngModel">
+        <div *ngIf="bankId.invalid && (bankId.dirty || bankId.touched)" class="error-message">
+          Bank ID is required
+        </div>
+      </div>
+  
+      <!-- Agent ID -->
+      <div class="form-group">
+        <input type="number" name="agentId" [(ngModel)]="admin.agentId" placeholder="Agent ID" required #agentId="ngModel">
+        <div *ngIf="agentId.invalid && (agentId.dirty || agentId.touched)" class="error-message">
+          Agent ID is required
+        </div>
+      </div>
+  
+      <!-- Submit Button -->
+      <button type="submit" [disabled]="addForm.invalid">Add Admin</button>
+    </form>
+  </div>
+  

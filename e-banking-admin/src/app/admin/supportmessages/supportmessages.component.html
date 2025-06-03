@@ -1,0 +1,35 @@
+<div class="support-table-container">
+    <h2>Support Messages</h2>
+    <p>View and manage messages sent to the support team.</p>
+  
+    <table class="support-table">
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>Sender-id</th>
+          <th>Message</th>
+          <th>Date</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let Message of messages; let i = index">
+          <td>{{ i + 1 }}</td>
+          <td>{{ Message.userid }}</td>
+          <td>{{ Message.message }}</td>
+          <td>{{ Message.timestmp | date:'short' }}</td>
+          <td>
+            <button class="respond-btn" (click)="toggleResponse(Message.id)">💬 Respond</button>
+            <button class="delete-btn" (click)="deleteMessage(Message.id)">🗑 Delete</button>
+            <div *ngIf="activeResponseId === Message.id">
+                <app-support-message-response
+                  [message]="Message"   
+                  (submitted)="handleResponseSubmit($event)">  
+                </app-support-message-response>
+              </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  

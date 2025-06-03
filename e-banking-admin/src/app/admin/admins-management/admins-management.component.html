@@ -1,0 +1,64 @@
+<div  class="admin-table-container">
+    <h2>Administrators</h2>
+    <button class="add-btn" (click)="showadd()">
+        {{ showAddForm ? 'Cancel' : 'Add Admin' }}
+      </button>
+
+      <!-- <div *ngIf="message" [ngClass]="message.success ? 'success-message' : 'error-message'">
+        {{ message.message }}
+      </div> -->
+      
+      
+      <app-add-admin *ngIf="showAddForm" (adminAdded)="handleAddAdmin($event)"></app-add-admin>
+      
+      <app-update-admin
+        *ngIf="showUpdateForm"
+        [admin]="selectedAdmin"
+        (adminUpdated)="handleUpdateAdmin($event)">
+      </app-update-admin>
+  
+    <div class="table-wrapper">
+    <table class="admin-table">
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>Username</th>
+          <th>Name</th>
+          <th>Email</th>
+          <th>Phone</th>
+          <th>Adress</th>
+          <th>Status</th>
+          <th>Department</th>
+          <th>Employee ID</th>
+          <th>Bank ID</th>
+          <th>Agent ID</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let admin of administrators; let i = index">
+          <td>{{ i + 1 }}</td>
+          <td>{{ admin.username }}</td>
+          <td>{{ admin.name }}</td>
+          <td>{{ admin.email }}</td>
+          <td>{{ admin.phone }}</td>
+          <td>{{ admin.address }}</td>
+          <td>{{ admin.status }}</td>
+          <td>{{ admin.departement }}</td>
+          <td>{{ admin.employeeId }}</td>
+          <td>{{ admin.bankId }}</td>
+          <td>{{ admin.agentId }}</td>
+          <td class="admin-actions">
+            <button class="btn-deactivate" (click)="showUpdate(admin)">
+                Update
+              </button>
+              <button class="btn-delete" (click)="deleteadmin(admin)">
+                Delete
+              </button>
+              
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    </div>
+  </div>

@@ -1,0 +1,75 @@
+<div class="currency-form">
+  <h3>Update Currency</h3>
+  <form (ngSubmit)="updateCurrency()" #updateForm="ngForm">
+      <!-- Name Field -->
+      <div class="form-group">
+          <label>Name</label>
+          <input type="text" name="name" [(ngModel)]="currency.name" required #name="ngModel">
+          <div *ngIf="name.invalid && (name.dirty || name.touched)" class="error-message">
+              Name is required
+          </div>
+      </div>
+
+      <!-- Code Field -->
+      <div class="form-group">
+          <label>Code</label>
+          <input type="text" name="code" [(ngModel)]="currency.code" required 
+                 minlength="3" maxlength="3" #code="ngModel">
+          <div *ngIf="code.invalid && (code.dirty || code.touched)" class="error-message">
+              <div *ngIf="code.errors?.['required']">Code is required</div>
+              <div *ngIf="code.errors?.['minlength'] || code.errors?.['maxlength']">
+                  Code must be exactly 3 characters
+              </div>
+          </div>
+      </div>
+
+      <!-- Symbol Field -->
+      <div class="form-group">
+          <label>Symbol</label>
+          <input type="text" name="symbol" [(ngModel)]="currency.symbol" required #symbol="ngModel">
+          <div *ngIf="symbol.invalid && (symbol.dirty || symbol.touched)" class="error-message">
+              Symbol is required
+          </div>
+      </div>
+
+      <!-- Buy Rate Field -->
+      <div class="form-group">
+          <label>Buy Rate</label>
+          <input type="number" name="buyRate" [(ngModel)]="currency.buyRate" 
+                 required min="0" step="0.0001" #buyRate="ngModel">
+          <div *ngIf="buyRate.invalid && (buyRate.dirty || buyRate.touched)" class="error-message">
+              <div *ngIf="buyRate.errors?.['required']">Buy rate is required</div>
+              <div *ngIf="buyRate.errors?.['min']">Must be positive</div>
+          </div>
+      </div>
+
+      <!-- Sell Rate Field -->
+      <div class="form-group">
+          <label>Sell Rate</label>
+          <input type="number" name="sellRate" [(ngModel)]="currency.sellRate" 
+                 required min="0" step="0.0001" #sellRate="ngModel">
+          <div *ngIf="sellRate.invalid && (sellRate.dirty || sellRate.touched)" class="error-message">
+              <div *ngIf="sellRate.errors?.['required']">Sell rate is required</div>
+              <div *ngIf="sellRate.errors?.['min']">Must be positive</div>
+          </div>
+      </div>
+
+      <!-- Country Field -->
+      <div class="form-group">
+          <label>Country</label>
+          <input type="text" name="country" [(ngModel)]="currency.country" #country="ngModel">
+          <div *ngIf="country.invalid && (country.dirty || country.touched)" class="error-message"></div>
+          country is required
+      </div>
+
+      <div class="form-group">
+        <label>Name</label>
+        <input type="text" name="amount" [(ngModel)]="currency.amount" required #amount="ngModel">
+        <div *ngIf="amount.invalid && (amount.dirty || amount.touched)" class="error-message">
+            amount is required
+        </div>
+    </div>
+
+      <button type="submit" [disabled]="updateForm.invalid">Update Currency</button>
+  </form>
+</div>
